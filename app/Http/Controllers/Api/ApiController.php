@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class ApiController extends Controller
 {
     // Api variables
-    private $apiURL = 'https://www.thesportsdb.com/api/v1/json/2/all_sports.php';
+    protected $apiURL = 'https://www.thesportsdb.com/api/v1/json/2/all_sports.php';
 
     /**
      * Display all sports.
@@ -17,7 +18,7 @@ class ApiController extends Controller
     {
         $response = Http::get($this->apiURL);
 
-        return $response->json();
+        return $response->json()['sports'];
     }
 
     /**
@@ -44,12 +45,14 @@ class ApiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $idSport
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($idSport)
     {
-        //
+        $allSports = $this->index();
+
+        return $allSports[$idSport];
     }
 
     /**

@@ -18,4 +18,10 @@ Route::get('/', function () {
 });
 
 // Show all sports from the API call
+
 Route::get('/all-sports', 'Api@index')->name('all-sports');
+
+Route::resources([
+    'api' => 'Api',
+    'sports' => 'Sports',
+]);

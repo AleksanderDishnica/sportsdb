@@ -229,7 +229,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Api' => App\Http\Controllers\ApiController::class,
+        'Api' => \App\Http\Controllers\Api\ApiController::class,
+        'Sports' => \App\Http\Controllers\Sports\SportsController::class,
 
     ],
 
