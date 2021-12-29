@@ -25,3 +25,5 @@ Route::resources([
     'api' => 'Api',
     'sports' => 'Sports',
 ]);
+
+Route::view('/data', 'data');

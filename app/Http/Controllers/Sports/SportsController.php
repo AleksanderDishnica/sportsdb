@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Sports;
 
-use App\Http\Controllers\Api\ApiController;
 use Illuminate\Http\Request;
 
 class SportsController extends ApiController
