@@ -25,3 +25,6 @@ Route::resources([
 ]);
 
 Route::view('/data', 'data');
+Route::get('/addSports', 'Api@storeSports')->name('addSports');
+Route::get('/addLeagues', 'Api@storeLeagues')->name('addLeagues');
+Route::get('/addTeams', 'Api@storeTeams')->name('addTeams');

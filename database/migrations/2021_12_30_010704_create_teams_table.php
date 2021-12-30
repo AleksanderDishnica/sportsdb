@@ -15,6 +15,7 @@ class CreateTeamsTable extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
+            $table->integer('teamId');
             $table->string('name');
             $table->string('stadiumName');
             $table->string('website');
