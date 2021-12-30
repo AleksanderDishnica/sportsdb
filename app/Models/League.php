@@ -9,8 +9,21 @@ class League extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
+    /**
+     * Relationship between the sport and the league
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function sports()
+    {
+        return $this->belongsTo('App\Sport');
+    }
 
-    ];
+    /**
+     * Relationship between the team and the league
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function teams()
+    {
+        return $this->belongsToMany('App\Team')->withTimestamps();
+    }
 }

@@ -13,9 +13,10 @@ class ApiController extends Controller
     // Api variables
     protected $sportsURL = 'https://www.thesportsdb.com/api/v1/json/2/all_sports.php';
     protected $leaguesURL = 'https://www.thesportsdb.com/api/v1/json/2/all_leagues.php';
+    protected $leagueTeamsUrl = 'https://www.thesportsdb.com/api/v1/json/50130162/lookup_all_teams.php?id=';
     protected $teamURL = 'https://www.thesportsdb.com/api/v1/json/50130162/lookupteam.php?id=';
-    protected $sportTeamsUrl = 'https://www.thesportsdb.com/api/v1/json/50130162/lookup_all_teams.php?id=';
-    protected $standings = 'https://www.thesportsdb.com/api/v1/json/2/lookuptable.php?l=4328&s=2020-2021';
+    protected $standings = 'https://www.thesportsdb.com/api/v1/json/2/lookuptable.php?s=2020-2021&l=';
+
     /**
      * Display all sports.
      */
@@ -131,20 +132,25 @@ class ApiController extends Controller
     }
 
     /**
-     * Store all leagues
+     * Store all teams of all leagues
+     */
+
+    /**
+     * Store all teams
      * @return void
      */
     public function storeTeams(){
         $allLeagues = League::all();
 
         foreach($allLeagues as $key=>$league):
-            $response = Http::get($this->teamsURL . $league->leagueId);
+            $response = Http::get($this->leagueTeamsUrl . $league->leagueId);
 
             // store all teams to the database
             foreach($response->json()['teams'] as $key=>$team):
                 $addTeam = new League();
 
                 $addTeam->teamId = $team['idTeam'];
+                $addTeam->leagueId = $team['leagueId'];
                 $addTeam->name = $team['strTeam'];
                 $addTeam->stadiumName = $team['strStadium'];
                 $addTeam->website = $team['strWebsite'];
