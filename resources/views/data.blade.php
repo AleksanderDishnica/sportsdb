@@ -1,12 +1,13 @@
 <html>
-    <head>
-        <title>Sports DB</title>
-    </head>
+    <div id="vheader">
+        <vheader></vheader>
+    </div>
     <body>
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div id="app">
+                        <vnav></vnav>
                         <sport></sport>
                     </div>
                 </div>
