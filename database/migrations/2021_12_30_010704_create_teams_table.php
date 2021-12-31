@@ -18,17 +18,17 @@ class CreateTeamsTable extends Migration
             $table->integer('teamId');
             $table->index('teamId');
             $table->string('name');
-            $table->string('stadiumName');
-            $table->string('website');
-            $table->string('descriptionEN');
-            $table->integer('rank');
-            $table->integer('goalsFor');
-            $table->integer('goalsAgainst');
-            $table->integer('goalDifference');
-            $table->integer('wins');
-            $table->integer('loss');
-            $table->integer('draw');
-            $table->integer('points');
+            $table->string('stadiumName')->nullable();
+            $table->string('website')->nullable();
+            $table->text('descriptionEN')->nullable();
+            $table->integer('rank')->nullable();
+            $table->integer('goalsFor')->nullable();
+            $table->integer('goalsAgainst')->nullable();
+            $table->integer('goalDifference')->nullable();
+            $table->integer('wins')->nullable();
+            $table->integer('loss')->nullable();
+            $table->integer('draw')->nullable();
+            $table->integer('points')->nullable();
             $table->timestamps();
         });
     }

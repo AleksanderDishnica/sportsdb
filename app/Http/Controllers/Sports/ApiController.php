@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Sports;
 use App\Http\Controllers\Controller;
 use App\Models\League;
 use App\Models\Sport;
+use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
 
 class ApiController extends Controller
 {
@@ -132,10 +134,6 @@ class ApiController extends Controller
     }
 
     /**
-     * Store all teams of all leagues
-     */
-
-    /**
      * Store all teams
      * @return void
      */
@@ -146,18 +144,40 @@ class ApiController extends Controller
             $response = Http::get($this->leagueTeamsUrl . $league->leagueId);
 
             // store all teams to the database
-            foreach($response->json()['teams'] as $key=>$team):
-                $addTeam = new League();
+            if(!empty($response->json()['teams'])):
+                foreach($response->json()['teams'] as $key=>$team):
+                    $addTeam = new Team();
 
-                $addTeam->teamId = $team['idTeam'];
-                $addTeam->leagueId = $team['leagueId'];
-                $addTeam->name = $team['strTeam'];
-                $addTeam->stadiumName = $team['strStadium'];
-                $addTeam->website = $team['strWebsite'];
-                $addTeam->descriptionEN = $team['strDescriptionEN'];
+                    $addTeam->teamId = $team['idTeam'];
+                    $addTeam->name = $team['strTeam'];
+                    $addTeam->stadiumName = $team['strStadium'];
+                    $addTeam->website = $team['strWebsite'];
+                    $addTeam->descriptionEN = $team['strDescriptionEN'];
 
-                $addTeam->save();
-            endforeach;
+                    $addTeam->save();
+                endforeach;
+            endif;
+        endforeach;
+    }
+
+    /**
+     * Store all teams with all leagues
+     */
+    public function storeLeagueTeams(){
+        $allLeagues = League::all();
+
+        foreach($allLeagues as $key=>$league):
+            $response = Http::get($this->leagueTeamsUrl . $league->leagueId);
+
+            // store all team_id with league_id to the database
+            if(!empty($response->json()['teams'])):
+                foreach($response->json()['teams'] as $key=>$team):
+                    $addLeagueTeam = DB::table('league_team')->insert([
+                        'team_id' => intval($team['idTeam']),
+                        'league_id' => $league->leagueId
+                    ]);
+                endforeach;
+            endif;
         endforeach;
     }
 }
