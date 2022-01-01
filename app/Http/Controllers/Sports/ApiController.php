@@ -24,7 +24,7 @@ class ApiController extends Controller
      */
     public function index()
     {
-        $response = Http::get($this->apiURL);
+        $response = Http::get($this->sportsURL);
 
         return $response->json()['sports'];
     }
@@ -125,7 +125,7 @@ class ApiController extends Controller
         foreach($response->json()['leagues'] as $key=>$league):
             $addLeague = new League();
 
-            $addLeague->leagueId = $league['idLeague'];
+            $addLeague->id = $league['idLeague'];
             $addLeague->name = $league['strLeague'];
             $addLeague->sportName = $league['strSport'];
 
@@ -141,20 +141,22 @@ class ApiController extends Controller
         $allLeagues = League::all();
 
         foreach($allLeagues as $key=>$league):
-            $response = Http::get($this->leagueTeamsUrl . $league->leagueId);
+            $response = Http::get($this->leagueTeamsUrl . $league->id);
 
             // store all teams to the database
             if(!empty($response->json()['teams'])):
                 foreach($response->json()['teams'] as $key=>$team):
-                    $addTeam = new Team();
+                    if(empty(Team::where('id', $team['idTeam'])->get()->first())):
+                        $addTeam = new Team();
 
-                    $addTeam->teamId = $team['idTeam'];
-                    $addTeam->name = $team['strTeam'];
-                    $addTeam->stadiumName = $team['strStadium'];
-                    $addTeam->website = $team['strWebsite'];
-                    $addTeam->descriptionEN = $team['strDescriptionEN'];
+                        $addTeam->id = $team['idTeam'];
+                        $addTeam->name = $team['strTeam'];
+                        $addTeam->stadiumName = $team['strStadium'];
+                        $addTeam->website = $team['strWebsite'];
+                        $addTeam->descriptionEN = $team['strDescriptionEN'];
 
-                    $addTeam->save();
+                        $addTeam->save();
+                    endif;
                 endforeach;
             endif;
         endforeach;
@@ -167,14 +169,14 @@ class ApiController extends Controller
         $allLeagues = League::all();
 
         foreach($allLeagues as $key=>$league):
-            $response = Http::get($this->leagueTeamsUrl . $league->leagueId);
+            $response = Http::get($this->leagueTeamsUrl . $league->id);
 
             // store all team_id with league_id to the database
             if(!empty($response->json()['teams'])):
                 foreach($response->json()['teams'] as $key=>$team):
                     $addLeagueTeam = DB::table('league_team')->insert([
                         'team_id' => intval($team['idTeam']),
-                        'league_id' => $league->leagueId
+                        'league_id' => $league->id
                     ]);
                 endforeach;
             endif;

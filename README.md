@@ -2,6 +2,7 @@ Instructions:
 
 1. Create laravel_sportsdb database.
 2. Run migrations.
+3. Change max_execution_time inside php.ini to 1000, restart server if already started.
 
 ------------------------
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>

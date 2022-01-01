@@ -10,20 +10,18 @@ class League extends Model
     use HasFactory;
 
     /**
-     * Relationship between the sport and the league
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function sports()
+    public function sport()
     {
-        return $this->belongsTo('App\Sport');
+        return $this->belongsTo(Sport::class, 'sportName', 'name');
     }
 
     /**
-     * Relationship between the team and the league
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function teams()
     {
-        return $this->belongsToMany('App\Team')->withTimestamps();
+        return $this->belongsToMany(Team::class);
     }
 }

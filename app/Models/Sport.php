@@ -15,6 +15,6 @@ class Sport extends Model
      */
     public function leagues()
     {
-        return $this->hasMany('App\League');
+        return $this->hasMany(League::class, 'sportName', 'name');
     }
 }

@@ -15,7 +15,6 @@ class Team extends Model
      */
     public function leagues()
     {
-        return $this->belongsToMany('App\League')->withTimestamps();
+        return $this->belongsToMany(League::class);
     }
-
 }

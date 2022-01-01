@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Sports;
 
+use App\Models\Sport;
+use App\Models\Team;
+use App\Models\League;
 use Illuminate\Http\Request;
 
 class SportsController extends ApiController
@@ -13,7 +16,7 @@ class SportsController extends ApiController
      */
     public function index()
     {
-        dd(ApiController::index());
+        //
     }
 
     /**
