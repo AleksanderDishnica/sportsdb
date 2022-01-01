@@ -13,18 +13,18 @@ use Illuminate\Support\Facades\DB;
 class ApiController extends Controller
 {
     // Api variables
-    protected $sportsURL = 'https://www.thesportsdb.com/api/v1/json/2/all_sports.php';
-    protected $leaguesURL = 'https://www.thesportsdb.com/api/v1/json/2/all_leagues.php';
-    protected $leagueTeamsUrl = 'https://www.thesportsdb.com/api/v1/json/50130162/lookup_all_teams.php?id=';
-    protected $teamURL = 'https://www.thesportsdb.com/api/v1/json/50130162/lookupteam.php?id=';
-    protected $standings = 'https://www.thesportsdb.com/api/v1/json/2/lookuptable.php?s=2020-2021&l=';
+    protected static $sportsURL = 'https://www.thesportsdb.com/api/v1/json/2/all_sports.php';
+    protected static $leaguesURL = 'https://www.thesportsdb.com/api/v1/json/2/all_leagues.php';
+    protected static $leagueTeamsUrl = 'https://www.thesportsdb.com/api/v1/json/50130162/lookup_all_teams.php?id=';
+    protected static $teamURL = 'https://www.thesportsdb.com/api/v1/json/50130162/lookupteam.php?id=';
+    protected static $standings = 'https://www.thesportsdb.com/api/v1/json/2/lookuptable.php?s=2020-2021&l=';
 
     /**
      * Display all sports.
      */
     public function index()
     {
-        $response = Http::get($this->sportsURL);
+        $response = Http::get(static::$sportsURL);
 
         return $response->json()['sports'];
     }
@@ -101,7 +101,7 @@ class ApiController extends Controller
      * @return void
      */
     public function storeSports(){
-        $response = Http::get($this->sportsURL);
+        $response = Http::get(static::$sportsURL);
 
         // store all sports to the database
         foreach($response->json()['sports'] as $key=>$sport):
@@ -119,7 +119,7 @@ class ApiController extends Controller
      * @return void
      */
     public function storeLeagues(){
-        $response = Http::get($this->leaguesURL);
+        $response = Http::get(static::$leaguesURL);
 
         // store all leagues to the database
         foreach($response->json()['leagues'] as $key=>$league):
@@ -141,7 +141,7 @@ class ApiController extends Controller
         $allLeagues = League::all();
 
         foreach($allLeagues as $key=>$league):
-            $response = Http::get($this->leagueTeamsUrl . $league->id);
+            $response = Http::get(static::$leagueTeamsUrl . $league->id);
 
             // store all teams to the database
             if(!empty($response->json()['teams'])):
@@ -169,7 +169,7 @@ class ApiController extends Controller
         $allLeagues = League::all();
 
         foreach($allLeagues as $key=>$league):
-            $response = Http::get($this->leagueTeamsUrl . $league->id);
+            $response = Http::get(static::$leagueTeamsUrl . $league->id);
 
             // store all team_id with league_id to the database
             if(!empty($response->json()['teams'])):
