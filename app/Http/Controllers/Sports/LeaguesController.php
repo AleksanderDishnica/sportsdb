@@ -40,7 +40,7 @@ class LeaguesController extends Controller
      * Display the specified resource.
      *
      * @param  int  $sport_id
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function show($sport_id)
     {

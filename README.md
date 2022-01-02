@@ -1,8 +1,12 @@
-Instructions:
+Instructions on how to install this project:
 
-1. Create laravel_sportsdb database.
-2. Run migrations.
+1. Copy and modify .env.example as needed.
+2. Create laravel_sportsdb database.
 3. Change max_execution_time inside php.ini to 1000, restart server if already started.
+4. Run migrations.
+5. php artisan sports:todb
+6. npm install
+7. npm run watch
 
 ------------------------
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>

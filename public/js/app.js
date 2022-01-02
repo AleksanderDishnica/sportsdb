@@ -27996,21 +27996,25 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("nav", { staticClass: "nav justify-content-end" }, [
-    _c("a", { staticClass: "nav-link", attrs: { href: ["./"] } }, [
-      _vm._v("Home"),
-    ]),
-    _vm._v(" "),
-    _c("a", { staticClass: "nav-link", attrs: { href: ["./data"] } }, [
-      _vm._v("Data"),
-    ]),
-    _vm._v(" "),
-    _c("a", { staticClass: "nav-link", attrs: { href: ["./all-sports"] } }, [
-      _vm._v("Sports"),
-    ]),
-  ])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("nav", { staticClass: "nav justify-content-end" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { href: "javascript:history.back()" },
+        },
+        [_vm._v("Back")]
+      ),
+    ])
+  },
+]
 render._withStripped = true
 
 

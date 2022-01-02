@@ -10,10 +10,6 @@ use Illuminate\View\View;
 
 class TeamsController extends Controller
 {
-    /**
-     * @param $league_id
-     * @return View
-     */
     public function index()
     {
         //
@@ -44,7 +40,7 @@ class TeamsController extends Controller
      * Display the specified resource.
      *
      * @param  int  $league_id
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function show($league_id)
     {

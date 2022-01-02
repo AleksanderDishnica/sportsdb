@@ -1,7 +1,6 @@
 <template>
     <nav class="nav justify-content-end">
-        <a :href="['./']" class="nav-link">Home</a>
-        <a :href="['./data']" class="nav-link">Data</a>
-        <a :href="['./all-sports']" class="nav-link">Sports</a>
+        <a href="javascript:history.back()" class="btn btn-primary">Back</a>
+<!--        <a :href="['./']" class="nav-link">Home</a>-->
     </nav>
 </template>
