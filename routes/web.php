@@ -23,5 +23,6 @@ Route::resources([
 ]);
 
 Route::get('/team/{id}', 'Teams@show_single')->name('singleTeam');
+Route::get('/storeStandings', 'Api@storeStandings')->name('storeStandings');
 
 Route::view('/data', 'data');

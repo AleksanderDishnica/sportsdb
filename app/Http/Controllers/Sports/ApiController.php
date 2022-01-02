@@ -182,4 +182,30 @@ class ApiController extends Controller
             endif;
         endforeach;
     }
+
+    public function storeStandings(){
+        $allLeagues = League::all();
+
+        foreach($allLeagues as $key=>$league):
+            $response = Http::get(static::$standings . $league->id);
+
+            // store all team_id with league_id to the database
+            if(!empty($response->json()['table'])):
+                foreach($response->json()['table'] as $key=>$standing):
+                    $team_standings = DB::table('teams')
+                        ->where('id', $standing['idTeam'])
+                        ->update([
+                            'rank' => $standing['intRank'],
+                            'goalsFor' => $standing['intGoalsFor'],
+                            'goalsAgainst' => $standing['intGoalsAgainst'],
+                            'goalDifference' => $standing['intGoalDifference'],
+                            'wins' => $standing['intWin'],
+                            'loss' => $standing['intLoss'],
+                            'draw' => $standing['intDraw'],
+                            'points' => $standing['intPoints'],
+                        ]);
+                endforeach;
+            endif;
+        endforeach;
+    }
 }

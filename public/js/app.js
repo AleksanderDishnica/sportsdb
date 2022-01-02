@@ -28003,15 +28003,20 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("nav", { staticClass: "nav justify-content-end" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-primary",
-          attrs: { href: "javascript:history.back()" },
-        },
-        [_vm._v("Back")]
-      ),
+    return _c("nav", { staticClass: "nav" }, [
+      _c("div", { staticClass: "col-6" }, [_c("h3", [_vm._v("Sports DB")])]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-6" }, [
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-primary float-end",
+            attrs: { href: "javascript:history.back()" },
+          },
+          [_vm._v("Back")]
+        ),
+      ]),
+      _c("hr"),
     ])
   },
 ]
