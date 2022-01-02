@@ -1,6 +1,6 @@
 Instructions on how to install this project:
 
-1. Copy and modify .env.example as needed.
+1. Copy and rename .env.example as .env, modify .env as needed.
 2. Create laravel_sportsdb database.
 3. Change max_execution_time inside php.ini to 1000, restart server if already started.
 4. Run migrations.

@@ -42,10 +42,12 @@ class sportsApiToDB extends Command
         ApiController::storeSports();
         echo "Successfully added all sports into the database! Adding leagues now... \n";
         ApiController::storeLeagues();
-        echo "Successfully added leagues into the database! Adding teams now, this will take a long time, grab some coffee ☕... \n";
+        echo "Successfully added leagues into the database! Adding teams now, this will take a long time, in the meantime grab some ☕ ... \n";
         ApiController::storeTeams();
         echo "Successfully added teams into the database! Adding teams and league pivot table data now, also takes alot of time please wait... \n";
         ApiController::storeLeagueTeams();
+        echo "Successfully added pivot table into the database! Adding final standings for the teams, please wait... \n";
+        ApiController::storeStandings();
         echo "Successfully added all sports data into the database!";
     }
 }
