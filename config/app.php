@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Sports\ApiController;
+use App\Http\Controllers\Sports\SportsController;
+use App\Http\Controllers\Sports\LeaguesController;
+use App\Http\Controllers\Sports\TeamsController;
+
 return [
 
     /*
@@ -229,8 +234,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Api' => \App\Http\Controllers\Sports\ApiController::class,
-        'Sports' => \App\Http\Controllers\Sports\SportsController::class,
+        'Api' => ApiController::class,
+        'Sports' => SportsController::class,
+        'Leagues' => LeaguesController::class,
+        'Teams' => TeamsController::class,
 
     ],
 

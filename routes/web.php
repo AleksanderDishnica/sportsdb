@@ -13,20 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'Api@index')->name('home');
-
-// Show all sports from the API call
-
-Route::get('/all-sports', 'Api@index')->name('all-sports');
+Route::get('/', 'Sports@index')->name('home');
 
 Route::resources([
     'api' => 'Api',
     'sports' => 'Sports',
+    'leagues' => 'Leagues',
+    'teams' => 'Teams',
 ]);
 
+Route::get('/team/{id}', 'Teams@show_single')->name('singleTeam');
+
 Route::view('/data', 'data');
-Route::get('/sports', 'Sports@index');
-Route::get('/addSports', 'Api@storeSports')->name('addSports');
-Route::get('/addLeagues', 'Api@storeLeagues')->name('addLeagues');
-Route::get('/addTeams', 'Api@storeTeams')->name('addTeams');
-Route::get('/addLeagueTeams', 'Api@storeLeagueTeams')->name('addLeagueTeams');

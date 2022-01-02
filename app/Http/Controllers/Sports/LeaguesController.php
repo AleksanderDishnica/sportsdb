@@ -2,22 +2,17 @@
 
 namespace App\Http\Controllers\Sports;
 
+use App\Http\Controllers\Controller;
 use App\Models\Sport;
 use Illuminate\Http\Request;
+use App\Models\League;
 use Illuminate\View\View;
 
-class SportsController extends ApiController
+class LeaguesController extends Controller
 {
-    /**
-     * @return View
-     */
-    public function index()
+    public function index($sport_id)
     {
-        $sports = Sport::all();
-
-        return view('sports.index', [
-            'sports'=>$sports,
-        ]);
+        //
     }
 
     /**
@@ -44,12 +39,17 @@ class SportsController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $sport_id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($sport_id)
     {
-        //
+        $sport = Sport::find($sport_id);
+
+        return view('leagues.index', [
+            'leagues'=>$sport->leagues,
+            'sport_name'=>$sport->name,
+        ]);
     }
 
     /**
